@@ -1,6 +1,7 @@
 angular.module('crossVid', [
   'crossVid.user',
   'crossVid.video',
+  'crossVid.videos',
   'crossVid.services',
   'ngRoute',
   'infinite-scroll'
@@ -15,7 +16,7 @@ angular.module('crossVid', [
     })
   .when('/videos', {
     templateUrl: '../videos.html', 
-    controller: 'videoController'
+    controller: 'videosController'
     })
   .when('/video', {
     templateUrl: '../video.html', 

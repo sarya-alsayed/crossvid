@@ -1,4 +1,172 @@
-<div ng-include="'header.html'"></div>
-<div>
-<a ng-click='rateVideo(video._id)'>{{video.name}}</a>
+<!-- <div ng-include="'header.html'"></div>
+<div> -->
+<!-- <a ng-click='rateVideo(video._id)'>{{video.name}}</a>
 </div>
+
+					 
+					 <div ng-repeat='elem in video'>
+					 {{elem.name}}
+					 <video  controls width='340' height="200" >
+					  <source src="{{elem.url}}" type="video/mp4">
+					  Your browser does not support HTML5 video.
+					 </video>
+					 </div>
+ -->
+
+
+					  <!-- Page Content -->
+    <div class="container" >
+    <div >
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12" >
+                <h1 class="page-header">
+                    <small>{{videoInfo.name}}</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8"  ng-repeat='elem in video'>
+                <!-- <img class="img-responsive" src="http://placehold.it/750x500" alt=""> -->
+                
+					 <video  controls width='750' height="500" >
+					  <source src="{{elem.url}}" type="video/mp4">
+					  Your browser does not support HTML5 video.
+					 </video>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Video Description</h4>
+                <p>{{videoInfo.description}}</p>
+                <h3>Rate this video</h3>
+                <div id="stars-default"><input type=hidden name"rating"/></div>
+                <button ng-click='rateVideo(videoInfo._id)' class='btn btn-sm btn-warning' style="margin-top:10px">submit</button>
+<div id="stars-green" data-rating="3"></div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h4 class="page-header">Popular Videos</h4>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+        </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+</div>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	 $.fn.rating = function( method, options ) {
+		method = method || 'create';
+        // This is the easiest way to have default options.
+        var settings = $.extend({
+            // These are the defaults.
+			limit: 5,
+			value: 0,
+			glyph: "glyphicon-star",
+            coloroff: "gray",
+			coloron: "gold",
+			size: "2.0em",
+			cursor: "default",
+			onClick: function () {},
+            endofarray: "idontmatter"
+        }, options );
+		var style = "";
+		style = style + "font-size:" + settings.size + "; ";
+		style = style + "color:" + settings.coloroff + "; ";
+		style = style + "cursor:" + settings.cursor + "; ";
+	
+
+		
+		if (method == 'create')
+		{
+			//this.html('');	//junk whatever was there
+			
+			//initialize the data-rating property
+			this.each(function(){
+				attr = $(this).attr('data-rating');
+				if (attr === undefined || attr === false) { $(this).attr('data-rating',settings.value); }
+			})
+			
+			//bolt in the glyphs
+			for (var i = 0; i < settings.limit; i++)
+			{
+				this.append('<span data-value="' + (i+1) + '" class="ratingicon glyphicon ' + settings.glyph + '" style="' + style + '" aria-hidden="true"></span>');
+			}
+			
+			//paint
+			this.each(function() { paint($(this)); });
+
+		}
+		if (method == 'set')
+		{
+			this.attr('data-rating',options);
+			this.each(function() { paint($(this)); });
+		}
+		if (method == 'get')
+		{
+			return this.attr('data-rating');
+		}
+		//register the click events
+		this.find("span.ratingicon").click(function() {
+			rating = $(this).attr('data-value')
+			$(this).parent().attr('data-rating',rating);
+			paint($(this).parent());
+			settings.onClick.call( $(this).parent() );
+		})
+		function paint(div)
+		{
+			rating = parseInt(div.attr('data-rating'));
+			div.find("input").val(rating);	//if there is an input in the div lets set it's value
+			div.find("span.ratingicon").each(function(){	//now paint the stars
+				
+				var rating = parseInt($(this).parent().attr('data-rating'));
+				var value = parseInt($(this).attr('data-value'));
+				if (value > rating) { $(this).css('color',settings.coloroff); }
+				else { $(this).css('color',settings.coloron); }
+			})
+		}
+
+    };
+
+	
+	
+});
+</script>
