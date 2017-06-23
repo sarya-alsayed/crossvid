@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   "postinstall": "bower install",
+    "postinstall": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-lazy-loader": "^2.1.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "mongoose": "^4.4.20",

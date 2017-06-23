@@ -2,7 +2,8 @@ angular.module('crossVid', [
   'crossVid.user',
   'crossVid.video',
   'crossVid.services',
-  'ngRoute'
+  'ngRoute',
+  'infinite-scroll'
   
 ])
 .config(function ($routeProvider, $httpProvider) {
@@ -25,6 +26,7 @@ angular.module('crossVid', [
     });
     
 })
+
 // .factory('AttachTokens', function ($window) {
 //   // this is an $httpInterceptor
 //   // its job is to stop all out going request

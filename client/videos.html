@@ -1,7 +1,89 @@
 
-<div ng-include="'header.html'"></div>
+<!-- <div ng-include="'header.html'"></div>
 <div ng-repeat='video in videos'>
 <a ng-click='selectVideo(video._id)'>{{video.name}}</a>
 
 
+</div> -->
+
+
+<!-- Portfolio Grid Section -->
+    <!-- <section id="portfolio" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Portfolio</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat='video in videos'>
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4 ng-click='selectVideo(video._id)'>{{video.name}}</h4>
+                        <p class="text-muted">{{video.description}}</p>
+                    </div>
+                </div>
+         
+                 
+                
+            </div>
+        </div>
+    </section>
+ -->
+
+ 
+
+
+
+
+<div class="container outerpadding" >
+<div class="row" infinite-scroll='getVideos()'>
+
+  <div class="col-lg-4" ng-repeat='video in videos'>
+     <div class="panel">
+        <div class="panel-heading" style="background-color:teal;color:#fff;"><strong>{{video.name}}</strong></div>
+        <div class="panel-body" style="background-color:#000;color:#fff; box-shadow:0 -12px 13px teal inset;">
+        
+        <div class="boximg">
+        <!--  <img data-src="http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG" class="img-responsive"> -->
+
+		  <video  controls width='340' height="200">
+		  <source ng-src="{{video.url}}" type="video/mp4">
+		  Your browser does not support HTML5 video.
+		 </video>
+
+         <span class="label label-danger date">25 December 2015</span>
+         <span class="likebut glyphicon glyphicon-tag"></span>
+         </div>
+         
+         
+   <br>
+        <p class="pull-left">{{video.name}}<br>
+           <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+            <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+             <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+              <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+               <span class="glyphicon glyphicon-star-empty" style="font-size:18px;"></span>
+        </p>
+     
+        <span ng-click='selectVideo(video._id)' class="badge pull-right" style="background-color:teal">More Details</span>
+      </div>
+     </div>
+  </div>
+  
+  </div>
+ </div>
+
 </div>
+
+
+
+
