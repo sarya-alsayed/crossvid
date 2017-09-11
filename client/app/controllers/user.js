@@ -1,5 +1,6 @@
 angular.module('crossVid.user', [])
-.controller('userController', function ($scope, User, $window, $location) {
+.controller('userController', function ($scope, User, $window, $location, $anchorScroll) {
+	// authnticate user
 	$scope.login = function () {
 		var user={};
 		user.username = $scope.userName;
@@ -27,6 +28,12 @@ angular.module('crossVid.user', [])
 				alert('An Error Occured !');
 			})
 	}
+
+	// scroll to login div
+	$scope.gotoBottom = function() {
+      $location.hash('contact');
+      $anchorScroll();
+    };
 	
 
 });

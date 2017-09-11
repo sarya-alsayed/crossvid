@@ -51,8 +51,6 @@ userModel.seed = function(){
 //Function to auth user baed on username and password.
 userModel.authUser = function(username, password){
 	var results = q.defer();
-	console.log('passssss', password)
-	console.log(username)
 	User.findOne({username: username, password: password},function(err, dbuser) {
 		if (err){
 			results.reject(err);

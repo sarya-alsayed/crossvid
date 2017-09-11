@@ -1,27 +1,13 @@
-<!-- <div ng-include="'header.html'"></div>
-<div> -->
-<!-- <a ng-click='rateVideo(video._id)'>{{video.name}}</a>
-</div>
-
-					 
-					 <div ng-repeat='elem in video'>
-					 {{elem.name}}
-					 <video  controls width='340' height="200" >
-					  <source src="{{elem.url}}" type="video/mp4">
-					  Your browser does not support HTML5 video.
-					 </video>
-					 </div>
- -->
-
+<div ng-include="'header.html'"></div>
+<div>
 
 					  <!-- Page Content -->
     <div class="container" >
-    <div >
-        <!-- Portfolio Item Heading -->
+   
         <div class="row">
             <div class="col-lg-12" >
                 <h1 class="page-header">
-                    <small>{{videoInfo.name}}</small>
+                    <small >{{videoInfo.name}}</small>
                 </h1>
             </div>
         </div>
@@ -44,48 +30,57 @@
                 <p>{{videoInfo.description}}</p>
                 <h3>Rate this video</h3>
                 <div id="stars-default"><input type=hidden name"rating"/></div>
-                <button ng-click='rateVideo(videoInfo._id)' class='btn btn-sm btn-warning' style="margin-top:10px">submit</button>
-<div id="stars-green" data-rating="3"></div>
+                <button ng-click='rateVideo(videoInfo._id)' class='btn btn-sm btn-warning' style="margin-top:10px" id='submit'>submit</button>
+<!-- <div id="stars-green" data-rating="3"> --></div>
 
             </div>
+
+        
+        <!-- /.row -->
+
 
         </div>
         <!-- /.row -->
+         <section id="portfolio"  >
+        <div class="container">
+          <!--   <div class="row">
+                <div class="col-lg-12 text-center"> -->
+                    <h3 >Popular Videos</h3>
+                  <!--   <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+<!--                 </div>
+            </div> -->
+            <div class="row">
+               <div class="col-lg-4" ng-repeat='video in videos'>
+     <div class="panel">
+        <div class="panel-heading" style="background-color:teal;color:#fff;"><a href><strong>{{video.name}}</strong></a></div>
+        <div class="panel-body" style="background-color:#000;color:#fff; box-shadow:0 -12px 13px teal inset;">
+        
+        <div class="boximg">
+        <!--  <img data-src="http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG" class="img-responsive"> -->
 
-        <!-- Related Projects Row -->
-        <div class="row">
+		  <video class="videosList" id="{{video.name}}" controls width='340' height="200">
+		  <source src="{{video.url}}" type="video/mp4">
+		  Your browser does not support HTML5 video.
+		 </video>
 
-            <div class="col-lg-12">
-                <h4 class="page-header">Popular Videos</h4>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
+    
+         
+         
+   <br>
+        <p class="pull-left">{{video.name}}<br>
+           <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+            <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+             <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+              <span class="glyphicon glyphicon-star" style="font-size:18px;"></span>
+               <span class="glyphicon glyphicon-star-empty" style="font-size:18px;"></span>
+        </p>
+     
+        <!-- <span ng-click='selectVideo(video._id)' class="badge pull-right" style="background-color:teal">More Details</span>
+      </div> -->
+     </div>
         </div>
         </div>
-        <!-- /.row -->
+    </section>
 
         <hr>
 
@@ -165,8 +160,8 @@ $(document).ready(function(){
 		}
 
     };
-
-	
+   
+	$("#stars-default").rating()
 	
 });
 </script>

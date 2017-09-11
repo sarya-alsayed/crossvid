@@ -3,69 +3,41 @@ angular.module('crossVid.videos', [])
 	var currentSession = $window.localStorage.getItem('sessionId');
 	var skip = 0;
 	$scope.videos = [];
+	console.log('$scope.videos', $scope.videos)
+	// get video when user scroll down for lazy loading with infinit scroll
 	$scope.getVideos = function () {
-		if ($scope.videos.length === 0){
 			getAllVideos();
-		}
-		else{
 			skip = skip + 6;
-			getAllVideos();
-		}
 	}
 
+	// get videos function
 	var getAllVideos = function(){
-		// skip = skip +9;
-		console.log('skip',skip)
 		Video.getVideos(currentSession, skip,6)
 			.then(function (videosResult) {
-
-				// console.log(videosResult.data);
-	
+				console.log(videosResult)
 				for (var i=0; i<videosResult.data.length; i++){
-					//videosResult.data[i].description= getWords(videosResult.data[i].description)
-				$scope.videos.push(videosResult.data[i]);
-
-				}
-				console.log('cccccccc',$scope.videos)
-				// $scope.videos = videosResult.data;
-				
+					$scope.videos.push(videosResult.data[i]);
+				}			
 			})
 			.catch(function (error){
 				console.log(error);
 			})
 	}
-// var getVideosss = function(){
-// 		Video.getVideos(currentSession)
-// 			.then(function (videosResult) {
-// 				console.log(videosResult);
-// 				// for (var i=0; i<videosResult.data.length; i++){
-// 				// 	videosResult.data[i].description= getWords(videosResult.data[i].description)
-// 				// }
-// 				$scope.videoss = videosResult.data;
-// 			})
-// 			.catch(function (error){
-// 				console.log(error);
-// 			})
-// 	}
-// 	getVideosss();
 
+	// move to video page for video details
 	$scope.selectVideo = function (videoId) {
 		$location.path('/video');
 		$window.localStorage.setItem('videoId', videoId);
 	}
 
-	
-	function getWords(str) {
-	    return str.split(/\s+/).slice(0,6).join(" ");
-	}
-
+	// for paly one video at the same time
 	document.addEventListener('play', function(e){
-    var videos = document.getElementsByTagName('video');
-    for(var i = 0, len = videos.length; i < len;i++){
-        if(videos[i] != e.target){
-            videos[i].pause();
-        }
-    }
+	    var videos = document.getElementsByTagName('video');
+	    for(var i = 0, len = videos.length; i < len;i++){
+	        if(videos[i] != e.target){
+	            videos[i].pause();
+	        }
+	    }
 	}, true);
 
 });
