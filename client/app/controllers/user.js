@@ -4,7 +4,8 @@ angular.module('crossVid.user', [])
 	$scope.login = function () {
 		var user={};
 		user.username = $scope.userName;
-		user.password = CryptoJS.MD5($scope.password).toString(); 
+		// user.password = CryptoJS.MD5($scope.password).toString(); 
+		user.password = $scope.password;
 		User.login(user)
 			.then(function (userResult) {
 				console.log(userResult);
